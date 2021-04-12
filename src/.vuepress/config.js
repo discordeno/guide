@@ -31,6 +31,7 @@ module.exports = {
   theme: "yuu",
   themeConfig: {
     repo,
+    docsDir: "src",
     docsBranch: "main",
     editLinks: true,
     lastUpdated: true,
