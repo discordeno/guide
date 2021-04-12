@@ -5,7 +5,7 @@ const sidebar = require("./sidebar");
 const title = name[0].toUpperCase() + name.slice(1);
 
 module.exports = {
-  base: `/guide/`,
+  base: `/`,
   title,
   description,
   head: [
