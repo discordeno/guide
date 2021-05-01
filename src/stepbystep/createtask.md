@@ -1,6 +1,6 @@
 # Creating Tasks
 
-Phenomenal! Now that you have mastered inhibitors, let's move on to one of the
+Phenomenal! Now that you have mastered monitors, let's move on to one of the
 final parts, Tasks. A lot of times, you will want to do something over and over
 again. To do this, you can use tasks. You could technically just do this with
 `setInterval` but, with tasks you gain a little more advantage like having

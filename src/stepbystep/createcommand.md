@@ -352,7 +352,7 @@ arguments:
     name: "member",
     type: "member",
     missing: (message) => {
-      message.sendResponse(
+      message.reply(
         `You did not provide a member to give the role to. You can provide a @member mention, a member ID, or try using their nickname/username. The nickname/username will only work if they have been active in your server recently.`,
       );
     },
@@ -361,7 +361,7 @@ arguments:
     name: "role",
     type: "role",
     missing: (message) => {
-      message.sendResponse(
+      message.reply(
         `You did not provide a role to give. You can provide a @role mention, a role ID, or it's name. If the role name did not work, try to use the **roleinfo** command to get the role ID.`,
       );
     },
@@ -372,14 +372,13 @@ arguments:
 ## Execute Option
 
 The execute option is the code that will run when the command is triggered. The
-execute function is passed 3 parameters that you can use in your command.
+execute function is passed 2 parameters that you can use in your command.
 
 - `message`: The message object itself that triggered this command.
 - `args`: The args that were provided by the user.
-- `guild`: The server guild object where this command was run.
 
 ```ts
-execute: function (message, args, guild) {
+execute: function (message, args) {
   // The code that is to be executed goes here
 }
 ```
@@ -389,7 +388,7 @@ execute: function (message, args, guild) {
 
 > ```ts
 > execute:
-> (message, args, guild) => {
+> (message, args) => {
 >   // The code that is to be executed goes here
 > };
 > ```
@@ -398,7 +397,7 @@ Let's start out by writing some pseudo-code (comments that will help us plan the
 code).
 
 ```ts
-execute: function (message, args, guild) {
+execute: function (message, args) {
   // If this was the everyone role alert with a silly error
 
   // If this is a managed role (some bots role) we can't give/remove it alert with silly error
@@ -431,8 +430,8 @@ the same as the everyone role.
 To do this, we are going to want something like this:
 
 ```ts
-if (args.role.id === message.guildID) {
-  return message.sendResponse(
+if (args.role.id === message.guildId) {
+  return message.reply(
     "The everyone role can not be given to anyone because everyone has the everyone role already. *Keep calm and let Carter figure it out*!",
   );
 }
@@ -450,8 +449,8 @@ import { Role, Member } from "../../deps.ts";
 
 execute: function (message, args: RoleArgs, guild) {
   // If this was the everyone role alert with a silly error
-  if (args.role.id === message.guildID) {
-    return message.sendResponse("Are you trying to make this person a super hero? Everyone has the everyone role. I can't give the everyone role to another user.");
+  if (args.role.id === message.guildId) {
+    return message.reply("Are you trying to make this person a super hero? Everyone has the everyone role. I can't give the everyone role to another user.");
   }
 
   // Lots of comments here hidden so you can see the changes easily.
@@ -470,46 +469,46 @@ Awesome! Let's keep going.
 // Make the function asynchronous
 execute: async function (message, args: RoleArgs, guild) {
   // If this was the everyone role alert with a silly error
-  if (args.role.id === message.guildID) {
-    return message.sendResponse("I don't know if you noticed or not but I'm an extremely arrogant bot who tends to think all of his plans will work. But I can't give the everyone role to someone.");
+  if (args.role.id === message.guildId) {
+    return message.reply("I don't know if you noticed or not but I'm an extremely arrogant bot who tends to think all of his plans will work. But I can't give the everyone role to someone.");
   }
 
   // If this is a managed role(some bots role) we can't give/remove alert with silly error
   if (args.role.managed) {
-    return message.sendResponse("Dammit man, just 'cause I'm Scottish doesn't mean I can give your people managed roles.")
+    return message.reply("Dammit man, just 'cause I'm Scottish doesn't mean I can give your people managed roles.")
   }
 
   // Get the bots highest role
-  const botsHighestRole = await highestRole(message.guildID, botID);
+  const botsHighestRole = await highestRole(message.guildId, botID);
 
   // Check if the bot has a role higher than the role that it will try to give.
-  const botIsHigher = await higherRolePosition(message.guildID, botsHighestRole.id, args.role.id)
+  const botIsHigher = await higherRolePosition(message.guildId, botsHighestRole.id, args.role.id)
 
   // If the role is too high alert the user.
   if (!botIsHigher) {
-    return message.sendResponse("Okay look, asking me give a role that is higher than my highest role is ridiculous! I am the first bot to admit I don't know who these people are nor do I care to. Look, if you'd like I could take you down the hall and just point at the people who annoy me more than the rest. But that's about as useful as I get.")
+    return message.reply("Okay look, asking me give a role that is higher than my highest role is ridiculous! I am the first bot to admit I don't know who these people are nor do I care to. Look, if you'd like I could take you down the hall and just point at the people who annoy me more than the rest. But that's about as useful as I get.")
   }
 
   // Check the command author's highest role
-  const membersHighestRole = await highestRole(message.guildID, message.author.id);
+  const membersHighestRole = await highestRole(message.guildId, message.author.id);
 
   // If the author does not have a role high enough to give this role alert
-  if (!(await higherRolePosition(message.guildID, membersHighestRole.id, args.role.id))) {
-    return message.sendResponse("In my culture, whenever someone tries to give a role that is higher than their highest role, I would be well within my rights to dismember you.")
+  if (!(await higherRolePosition(message.guildId, membersHighestRole.id, args.role.id))) {
+    return message.reply("In my culture, whenever someone tries to give a role that is higher than their highest role, I would be well within my rights to dismember you.")
   }
 
   // If the user has this role already we should remove it
-  if (message.member?.guilds.get(message.guildID)?.roles.includes(args.role.id)) {
-    message.member.removeRole(message.guildID, args.role.id, `${message.author.tag} used the role command to remove this role.`)
+  if (message.member?.guilds.get(message.guildId)?.roles.includes(args.role.id)) {
+    message.member.removeRole(message.guildId, args.role.id, `${message.author.tag} used the role command to remove this role.`)
     // Alert the user that used the command that the user has lost the role.
-    return message.sendResponse(`The role **${args.role.name}** has been removed from **${args.member.tag}**.`)
+    return message.reply(`The role **${args.role.name}** has been removed from **${args.member.tag}**.`)
   }
 
   // Add the role to the user.
-  message.member?.addRole(guildID, roleID)
+  message.member?.addRole(message.guildId, args.role.id)
 
   // Alert the user that used the command that the user has been give the role.
-  return message.sendResponse(`The role **${args.role.name}** has been added to **${args.member.tag}**.`)
+  return message.reply(`The role **${args.role.name}** has been added to **${args.member.tag}**.`)
 }
 ```
 
@@ -541,7 +540,7 @@ createCommand({
       name: "member",
       type: "member",
       missing: (message) => {
-        message.sendResponse(
+        message.reply(
           `You did not provide a member to give the role to. You can provide a @member mention, a member ID, or try using their nickname/username. The nickname/username will only work if they have been active in your server recently.`,
         );
       },
@@ -550,7 +549,7 @@ createCommand({
       name: "role",
       type: "role",
       missing: (message) => {
-        message.sendResponse(
+        message.reply(
           `You did not provide a role to give. You can provide a @role mention, a role ID, or it's name. If the role name did not work, try to use the **roleinfo** command to get the role ID.`,
         );
       },
@@ -558,38 +557,38 @@ createCommand({
   ],
   execute: async function (message, args: RoleArgs) {
     // If this was the everyone role alert with a silly error
-    if (args.role.id === message.guildID) {
-      return message.sendResponse(
+    if (args.role.id === message.guildId) {
+      return message.reply(
         "I don't know if you noticed or not but I'm an extremely arrogant bot who tends to think all of his plans will work. But I can't give the everyone role to someone.",
       );
     }
 
     // If this is a managed role(some bots role) we can't give/remove alert with silly error
     if (args.role.managed) {
-      return message.sendResponse(
+      return message.reply(
         "Dammit man, just 'cause I'm Scottish doesn't mean I can give your people managed roles.",
       );
     }
 
     // Get the bots highest role
-    const botsHighestRole = await highestRole(message.guildID, botID);
+    const botsHighestRole = await highestRole(message.guildId, botID);
 
     // Check if the bot has a role higher than the role that it will try to give. If the role is too high alert the user.
     if (
       !botsHighestRole || !(await higherRolePosition(
-        message.guildID,
+        message.guildId,
         botsHighestRole.id,
         args.role.id,
       ))
     ) {
-      return message.sendResponse(
+      return message.reply(
         "Okay look, asking me give a role that is higher than my highest role is ridiculous! I am the first bot to admit I don't know who these people are nor do I care to. Look, if you'd like I could take you down the hall and just point at the people who annoy me more than the rest. But that's about as useful as I get.",
       );
     }
 
     // Check the command author's highest role
     const membersHighestRole = await highestRole(
-      message.guildID,
+      message.guildId,
       message.author.id,
     );
 
@@ -597,40 +596,40 @@ createCommand({
     if (
       !membersHighestRole ||
       !(await higherRolePosition(
-        message.guildID,
+        message.guildId,
         membersHighestRole.id,
         args.role.id,
       ))
     ) {
-      return message.sendResponse(
+      return message.reply(
         "In my culture, whenever someone tries to give a role that is higher than their highest role, I would be well within my rights to dismember you.",
       );
     }
 
     // If the user has this role already we should remove it
     if (
-      message.member?.guilds.get(message.guildID)?.roles.includes(args.role.id)
+      message.member?.guilds.get(message.guildId)?.roles.includes(args.role.id)
     ) {
       message.member.removeRole(
-        message.guildID,
+        message.guildId,
         args.role.id,
         `${message.author.username} used the role command to remove this role.`,
       );
       // Alert the user that used the command that the user has lost the role.
-      return message.sendResponse(
+      return message.reply(
         `The role **${args.role.name}** has been removed from **${args.member.tag}**.`,
       );
     }
 
     // Add the role to the user.
     message.member?.addRole(
-      message.guildID,
+      message.guildId,
       args.role.id,
       `${message.author.username} used the role command to give this role.`,
     );
 
     // Alert the user that used the command that the user has been give the role.
-    return message.sendResponse(
+    return message.reply(
       `The role **${args.role.name}** has been added to **${args.member.tag}**.`,
     );
   },
@@ -729,7 +728,7 @@ funCommandData.forEach((data) => {
         .setAuthor(member.tag, avatarURL(member))
         .setDescription(
           translate(
-            message.guildID,
+            message.guildId,
             `commands/fun/${data.name}:${type}`,
             { mention: message.member!.mention, user: member.mention },
           ),

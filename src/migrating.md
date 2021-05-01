@@ -313,13 +313,13 @@ createCommand({
   execute: (message, args) => {
     // checking to see if the user has the role or not
     if (!args.member.roles.includes(args.role.id)) {
-      args.member.addRole(message.guildID, args.role.id);
-      message.sendResponse(
+      args.member.addRole(message.guildId, args.role.id);
+      message.reply(
         `${args.member.mention} has been given the role: ${args.role.name}`,
         5,
       );
     } else {
-      message.sendResponse(
+      message.reply(
         `${args.member.mention} already has the role: ${args.role.name}`,
       );
     }
@@ -431,7 +431,7 @@ createCommand({
       name: "member",
       type: "member",
       missing: function (message) {
-        message.sendResponse(`User cannot be found.`);
+        message.reply(`User cannot be found.`);
       },
       // By default this is true but for the purpose of the guide so you can see this exists.
       required: true,
@@ -456,13 +456,13 @@ createCommand({
       channel.name === "report"
     );
     if (!reportchannel) {
-      return message.sendResponse("*`Report channel cannot be found!`*");
+      return message.reply("*`Report channel cannot be found!`*");
     }
 
     // Delete the message command
     message.delete("Remove kick command trigger.");
     // Kick the user with reason
-    args.member.kick(message.guildID, args.reason);
+    args.member.kick(message.guildId, args.reason);
     // sends the kick report into log/report
     reporchannel.send({ embed });
   },

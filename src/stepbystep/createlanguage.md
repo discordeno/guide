@@ -72,7 +72,7 @@ interesting things in it so let's jump into that.
 Discordeno provides you a built in function called `translate`. It takes in 3
 different arguments.
 
-- `guildID` the id of the server. This is used to determine which language to
+- `guildId` the id of the server. This is used to determine which language to
   use.
 - `key` the unique folderpath:KEY string that will determine which string to
   translate.
@@ -83,7 +83,7 @@ strings. If you recall from our guide ealier we passed in 2 variables.
 
 ```ts
 translate(
-  message.guildID,
+  message.guildId,
   `commands/fun/${data.name}:${type}`,
   { mention: message.member!.mention, user: member.mention },
 );

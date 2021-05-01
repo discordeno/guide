@@ -32,7 +32,7 @@ import { botCache } from "../../deps.ts";
 
 botCache.inhibitors.set(
   "inhibitorname",
-  async function (message, command, guild) {
+  async function (message, command) {
     // Your code goes here
   },
 );
@@ -42,7 +42,6 @@ Inhibitors can take up to 3 arguments.
 
 - `message`: The message object that triggered the command.
 - `command`: The command object itself that was triggered.
-- `guild`: The server guild object where this command was ran.
 
 ## Understanding How Inhibitors Function
 
@@ -63,7 +62,7 @@ const member = message.member ||
   await getMember(guild.id, message.author.id).catch(console.error);
 // Member doesn't exist so cancel the command
 if (!member) {
-  message.sendResponse(
+  message.reply(
     `Sorry, but you can not use this command until you become VIP. **Close the IRIS!!!**`,
   );
   return true;
@@ -71,7 +70,7 @@ if (!member) {
 
 // If the user has the vip role on the support server given by patreon allow the command
 if (
-  member.guilds.get(message.guildID)?.roles.includes(
+  member.guilds.get(message.guildId)?.roles.includes(
     configs.roleIDs.patreonVIPRoleID,
   )
 ) {
@@ -79,7 +78,7 @@ if (
 }
 
 // Alert the user they don't have vip and can't use the command
-message.sendResponse(
+message.reply(
   `Sorry, but you can not use this command until you become a VIP. I'm sorry, Teal'c. We'll go to Disneyland next year. I promise.`,
 );
 // Cancel the command since the user does not have vip

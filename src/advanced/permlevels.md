@@ -161,7 +161,7 @@ import { configs } from "../../configs.ts";
 
 botCache.permissionLevels.set(
   PermissionLevels.NITRO_BOOSTER,
-  async (message) => {
+  (message) => {
     const guild = message.guild();
     if (!guild) return false;
 
@@ -214,13 +214,13 @@ that must return a boolean. For example,
 ```ts
 createCommand({
   name: `example`,
-  permissionLevels: (message, command, guild) => {
+  permissionLevels: (message, command) => {
 		// Anything you'd like to check here and return a boolean. Must return true or false.
 	},
   botChannelPermissions: ["SEND_MESSAGES"],
 ```
 
-The function is able to take 3 arguments. `message`, `command` and `guild`.
+The function is able to take 2 arguments. `message`, `command`.
 
 You can use an async function if you like as well.
 
