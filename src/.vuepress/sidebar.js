@@ -28,6 +28,7 @@ module.exports = {
       children: [
         "/advanced/",
         "/advanced/arguments",
+        "/advanced/collectors",
         "/advanced/customizations",
         "/advanced/dockerhosting",
         "/advanced/dynamiccommands",
