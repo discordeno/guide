@@ -9,7 +9,7 @@ you go through this guide it will make a lot more sense.
 > a bot ready. This includes github, git, a code editor like Visual Studio Code.
 > If you don't have these yet please prepare them first before going forward.
 
-- First, log into your Github account, and create a repository for your Discordeno Bot using the
+- First, log into your Github account and create a repository for your Discordeno Bot using the
   [Generator Template](https://github.com/discordeno/template/generate).
   Give it any name you like. For the purpose of this guide we will call it,
   Stargate. Following the link prior to logging in might lead to an error page.
