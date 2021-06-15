@@ -213,7 +213,7 @@ Remember if you want either of them as false, you can simply delete them and it
 will default to `false` allowing your bot to be cleaner and easier to read.
 However, if your prefer keeping it you can.
 
-For the purpose of this guide, we want our `role` comamnd to only be run in a
+For the purpose of this guide, we want our `role` command to only be run in a
 server, so we can set `guildOnly` to be **true** and delete the `dmOnly` option.
 
 ## NSFW Option
