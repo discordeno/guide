@@ -13,7 +13,7 @@ create a new monitor.
 
 ## Command Handler Monitor
 
-Discordeno come built with a monitor called `commandHandler`. This monitor runs
+Discordeno comes with a built-in monitor called `commandHandler`. This monitor runs
 on every message sent and figures out if it is a command and executes the
 command. If it is a valid command with a valid prefix, Discordeno runs that
 command.
