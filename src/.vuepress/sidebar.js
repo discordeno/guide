@@ -2,12 +2,11 @@ module.exports = {
   "/": [
     {
       title: "Home",
-      children: [
-        "/",
-        "faq",
-        "gettingstarted",
-        "migrating",
-      ],
+      children: ["/", "faq", "gettingstarted", "migrating"],
+    },
+    {
+      title: "Big Bots Guide",
+      children: ["/bigbots/", "/bigbots/rest"],
     },
     {
       title: "Step By Step Guide",
