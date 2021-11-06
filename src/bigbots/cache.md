@@ -31,11 +31,6 @@ CREATE TABLE IF NOT EXISTS "users" (
     username text COLLATE pg_catalog."default" NOT NULL,
     discriminator text COLLATE pg_catalog."default" NOT NULL,
     bot boolean,
-    system boolean,
-    "mfaEnabled" boolean,
-    locale boolean,
-    verified boolean,
-    email text COLLATE pg_catalog."default",
     CONSTRAINT "users_pkey" PRIMARY KEY (id)
 )
 ```
@@ -57,6 +52,44 @@ Once you are finished continue forward, for the purpose of keeping this guide sh
 
 > You should also run this file to prepare your pgsql and have your pgsql database running by now. Or whatever, cache service you use.
 
-### Optional
+### Cache Handler
 
-For the purpose of this guide, we do not need a `src/bot/cache/mod.ts` but should you desire one this would be the time to make one. This file can be used to create a clean interface to access your cache storage with 1 single source. 
+Now we will initiate our cache service. This may be different for you based on your choice of cache type. Since we are using PGSQL for our cache layer, we will now instantiate it.
+
+```ts
+import { postgres } from '../../../deps.ts'
+
+// YOU CUSTOM PGSQL INFO GOES HERE
+const DATABASE_USERNAME = "";
+const DATABASE_PASSWORD = "";
+const DATABASE_NAME = "";
+const DATABASE_HOST = "";
+const DATABASE_PORT = 8956;
+const DATABASE_MAX = 20;
+
+export const psql = postgres({
+  username: DATABASE_USERNAME,
+  password: DATABASE_PASSWORD,
+  database: DATABASE_NAME,
+  host: DATABASE_HOST,
+  port: DATABASE_PORT,
+  max: DATABASE_MAX,
+  /*onnotice: (data) => {
+      logger.psql(`${data.severity} ${bgBrightBlack(`[${data.code}| ${data.file}:${data.line}]`)}`, data.message);
+    },*/
+  types: {
+    bigint: postgres.BigInt,
+  },
+})
+```
+
+To use the PGSQL driver we are using in this guide you can insert this into your `deps.ts`. 
+
+```ts
+// @deno-types="https://denopkg.com/porsager/postgres@e2a8595d7aa8c3c838b83b9bca7b890c1707ad2c/types/index.d.ts"
+export { default as postgres } from "https://denopkg.com/porsager/postgres@e2a8595d7aa8c3c838b83b9bca7b890c1707ad2c/deno/lib/index.js";
+```
+
+> Note: Remember you can use any driver you like. For deno users we prefer to use this library for PGSQL because it is more stable and more performant.
+
+Now that the cache layer is ready, we can proceed to begin creating our bot.
