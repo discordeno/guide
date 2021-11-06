@@ -6,7 +6,13 @@ module.exports = {
     },
     {
       title: "Big Bots Guide",
-      children: ["/bigbots/", "/bigbots/rest"],
+      children: [
+        "/bigbots/",
+        "/bigbots/rest",
+        "/bigbots/gateway",
+        "/bigbots/cache",
+        "/bigbots/events",
+      ],
     },
     {
       title: "Step By Step Guide",
