@@ -154,6 +154,12 @@ You can insert any code you desire for your cache system here. Since we were usi
 
 One of the best parts about discordeno is the flexibility. In order to show this off, we will use the `user` example but you can apply this to any part of the library.
 
+### Why Is Customizing Important?
+
+At large scale, every single property can become expensive to store in your cache. For example, if your bot does not make use of a `channel.topic` why storing potentially millions of strings in your memory for something you never need/user. This could save you potentially GBs of memory to just remove this one property.
+
+### Customizng Process
+
 First, let's create a file in some path like `src/bot/internals/mod.ts`. Note that we will create quite a few files below simply to keep code cleaner and simpler, in expectation that it will grow more complex later. You can merge them as you wish.
 
 ```ts
@@ -205,5 +211,7 @@ First we override the internal transformer for the `user` object. What's cool is
 
 This method can be applied to any transformer, helper function, gateway event handler, util function or any part of the library. Anything and everything is possible to override. You do NOT need to fork and modify the library ever and give yourself a headache trying to maintain your fork with updates.
 
+## Handling Incoming Gateway Events
 
+Remember, this is a separate process we need to make sure we are listening to incoming events from our gateway instances. Since we used http in our Gateway step, we can create an http listener here as well.
 
