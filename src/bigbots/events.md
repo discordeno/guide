@@ -1,6 +1,6 @@
 # Step 4: Creating Standalone Event Handler
 
-Now we are about to start working on the bot code itself. he last 3 steps should be completed by the time you reach this. The event handler process will be listening for events from any number of gateway instances and be ready to handle them.
+Now we are about to start working on the bot code itself. The last 3 steps should be completed by the time you reach this. The event handler process will be listening for events from any number of gateway instances and be ready to handle them.
 
 In this guide, we may use the term `Bot` or the term `event handler`, remember that these refer to the same thing. This is your main bot code.
 
