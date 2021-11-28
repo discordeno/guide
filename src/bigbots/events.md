@@ -158,7 +158,7 @@ One of the best parts about discordeno is the flexibility. In order to show this
 
 At large scale, every single property can become expensive to store in your cache. For example, if your bot does not make use of a `channel.topic` why storing potentially millions of strings in your memory for something you never need/user. This could save you potentially GBs of memory to just remove this one property.
 
-### Customizng Process
+### Customizing Process
 
 First, let's create a file in some path like `src/bot/internals/mod.ts`. Note that we will create quite a few files below simply to keep code cleaner and simpler, in expectation that it will grow more complex later. You can merge them as you wish.
 
