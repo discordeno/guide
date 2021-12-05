@@ -1,8 +1,8 @@
-# Step 1: Creating A Standalone REST Process
+# Step 1: Creating a Standalone REST Process
 
-The first thing we want to make is our standalone REST process. This process will be used by almost every other process, so it is going to be the foundation of the bot.
+The first thing we want to make is our standalone REST process. This process is the foundation of our bot and will be used by almost every other process.
 
-Before, we dive into how, here is a quick summary of why you will want a standalone REST process.
+Before we dive into how, here is a quick summary of why you want a standalone REST process.
 
 ## Why Use Standalone REST Process?
 
@@ -30,8 +30,8 @@ Before going further, you should have already made the following pieces:
 - src/rest/mod.ts
 - deps.ts (Make sure to import discordeno)
 - configs.ts
-- Deno extension(if you are using deno, this is required)
-- TabNine extension to make your life so much better. (Optional)
+- Deno extension (if you are using Deno, this is required)
+- TabNine extension to make your life so much better (optional)
 
 ## Creating Rest Manager
 
@@ -53,7 +53,7 @@ const rest = createRestManager({
 - `REST_AUTHORIZATION` is a special password you want to use to authenticate that requests being sent to your port are indeed from you.
 - `customUrl` the url where this rest process will be running. This can be localhost which we are using in this guide if you want all processes on same VPS or separate them to different servers for horizontal scaling. `REST_PORT` is just the port where you want the process hosted.
 
-Now you have an entire Rest manager ready and waiting. Only thing you need now, is to listen for requests.
+Now you have an entire REST manager ready and waiting. Only thing you need now, is to listen for requests.
 
 ## Creating HTTP Listener
 
