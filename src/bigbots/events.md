@@ -1,10 +1,10 @@
-# Step 4: Creating Standalone Event Handler
+# Step 4: Creating a Standalone Event Handler
 
 Now we are about to start working on the bot code itself. The last 3 steps should be completed by the time you reach this. The event handler process will be listening for events from any number of gateway instances and be ready to handle them.
 
-In this guide, we may use the term `Bot` or the term `event handler`, remember that these refer to the same thing. This is your main bot code.
+In this guide, we may use the term `bot` or the term `event handler`, remember that these refer to the same thing. This is your main bot code.
 
-## Why Use Standalone Event Handler Process?
+## Why Use a Standalone Event Handler Process?
 
 The standalone event handler is the portion of your bot code that you will be changing the most. The three previous steps created processes that are intended to never be turned off. This process is designed to let you restart whenever you wish and be incredibly quick to restart. Since we don't have the delay to start up shards anymore, your code becomes reloaded instantly.
 
@@ -154,7 +154,7 @@ You can insert any code you desire for your cache system here. Since we were usi
 
 One of the best parts about discordeno is the flexibility. In order to show this off, we will use the `user` example but you can apply this to any part of the library.
 
-### Why Is Customizing Important?
+### Why is Customizing Important?
 
 At large scale, every single property can become expensive to store in your cache. For example, if your bot does not make use of a `channel.topic` why storing potentially millions of strings in your memory for something you never need/user. This could save you potentially GBs of memory to just remove this one property.
 
