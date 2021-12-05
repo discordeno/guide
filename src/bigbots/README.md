@@ -1,4 +1,4 @@
-# Step By Step Guide
+# Step by Step Guide
 
 THIS IS A WORK IN PROGRESS GUIDE USING THE NEW v13 OF DISCORDENO.
 
