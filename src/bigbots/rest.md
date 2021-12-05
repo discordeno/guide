@@ -33,7 +33,7 @@ Before going further, you should have already made the following pieces:
 - Deno extension (if you are using Deno, this is required)
 - TabNine extension to make your life so much better (optional)
 
-## Creating Rest Manager
+## Creating REST Manager
 
 Now let's open up that rest file and start coding.
 
