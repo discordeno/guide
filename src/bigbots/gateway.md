@@ -1,8 +1,8 @@
-# Step 2: Creating A Standalone Gateway Process
+# Step 2: Creating a Standalone Gateway Process
 
-If you are reading this, you should have your REST process completed. We are going to need it here. This process will be connecting to discord's websockets which will send you all the events.
+If you are reading this, you should have your REST process completed. We are going to need it here. This process will be connecting to Discord's websockets, which will send you all the events.
 
-Before, we dive into how, here is a quick summary of why you will want a standalone gateway process.
+Before we dive into how, here is a quick summary of why you will want a standalone gateway process.
 
 ## Why Use Standalone REST Process?
 
@@ -77,7 +77,7 @@ const rest = createRestManager({
 });
 ```
 
-Throw another rest manager here which will be responsible for calling the main REST process we created in Step 1. This will allow your gateway to communicate to the other process. Remember this is just to communicate outwards, this file should not have the http listener.
+Throw another REST manager here which will be responsible for calling the main REST process we created in Step 1. This will allow your gateway to communicate to the other process. Remember this is just to communicate outwards, this file should not have the http listener.
 
 > Feel free to refactor and optimize this should you wish to move `const rest...` to a separate file and reuse in both steps.
 
