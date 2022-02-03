@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Discordeno Blog</title>
+        <link>https://discordeno.mod.land/blog</link>
+        <description>Discordeno Blog</description>
+        <lastBuildDate>Thu, 03 Feb 2022 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[Welcome]]></title>
+            <link>https://discordeno.mod.land/blog/welcome</link>
+            <guid>welcome</guid>
+            <pubDate>Thu, 03 Feb 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Hello and Welcome to Discordeno, a highly scalable Discord library for Deno and Node.js using TypeScript.]]></description>
+            <content:encoded><![CDATA[<p>Hello and Welcome to Discordeno, a highly scalable Discord library for Deno and Node.js using TypeScript.</p>]]></content:encoded>
+            <category>discordeno</category>
+            <category>hello</category>
+        </item>
+    </channel>
+</rss>

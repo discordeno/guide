@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://discordeno.mod.land/blog</id>
+    <title>Discordeno Blog</title>
+    <updated>2022-02-03T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://discordeno.mod.land/blog"/>
+    <subtitle>Discordeno Blog</subtitle>
+    <icon>https://discordeno.mod.land/img/favicon.png</icon>
+    <entry>
+        <title type="html"><![CDATA[Welcome]]></title>
+        <id>welcome</id>
+        <link href="https://discordeno.mod.land/blog/welcome"/>
+        <updated>2022-02-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Hello and Welcome to Discordeno, a highly scalable Discord library for Deno and Node.js using TypeScript.]]></summary>
+        <content type="html"><![CDATA[<p>Hello and Welcome to Discordeno, a highly scalable Discord library for Deno and Node.js using TypeScript.</p>]]></content>
+        <author>
+            <name>ITOH</name>
+            <uri>https://github.com/itohatweb</uri>
+        </author>
+        <author>
+            <name>Skillz</name>
+            <uri>https://github.com/Skillz4Killz</uri>
+        </author>
+        <category label="discordeno" term="discordeno"/>
+        <category label="hello" term="hello"/>
+    </entry>
+</feed>
