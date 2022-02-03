@@ -1,24 +1,35 @@
 name: Deploy
+
 on:
   push:
     branches: main
+
 jobs:
   deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - name: Build documentation
+        with:
+          node-version: 14.x
+          cache: npm
+      - name: Build website
         run: |
-          yarn install
-          yarn docs:build
-      - name: Deploy documentation
-        if: success()
+          npm ci
+          npm run build
+
+      # Popular action to deploy to GitHub Pages:
+      # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./src/.vuepress/dist
-          commit_message: ${{ github.event.head_commit.message }}
-          cname: discordeno.mod.land
-          keep_files: true
-          enable_jekyll: false
+          # Build output to publish to the `gh-pages` branch:
+          publish_dir: ./build
+          # Assign commit authorship to the official GH-Actions bot for deploys to `gh-pages` branch:
+          # https://github.com/actions/checkout/issues/13#issuecomment-724415212
+          # The GH actions bot is used by default if you didn't specify the two fields.
+          # You can swap them out with your own user credentials.
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
