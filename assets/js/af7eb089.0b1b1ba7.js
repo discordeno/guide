@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksite=self.webpackChunksite||[]).push([[423],{1469:function(s){s.exports=JSON.parse('{"allTagsPath":"/blog/tags","slug":"/blog/tags/discordeno","name":"discordeno","count":1,"permalink":"/blog/tags/discordeno"}')}}]);
